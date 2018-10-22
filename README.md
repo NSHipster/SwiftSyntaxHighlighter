@@ -81,6 +81,9 @@ $ ./Highlight "print(\"Hello, world!\")"
 
 SwiftSyntaxHighlighter (0.0.1):
 
+![Example Output](https://nshipster.com/assets/swiftsyntaxhightlighter-example-output-829aa64ab4bdf73a2e3070aab017e21e3db37ca0ee35079f0e89e22594806df0.png)
+
+
 <pre class="highlight"><code><span class="kd">import</span> <span class="nn">Foundation</span>
 
 <span class="cm">/*
