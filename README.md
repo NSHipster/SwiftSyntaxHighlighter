@@ -2,7 +2,7 @@
 
 A syntax highlighter for Swift code that uses
 [SwiftSyntax](https://github.com/apple/swift-syntax) to generate
-[Pygments](https://pygments.org)-compatible HTML.
+[Pygments](http://pygments.org)-compatible HTML.
 
 This functionality is discussed in the NSHipster article
 [SwiftSyntax](https://nshipster.com/swiftsyntax/).
