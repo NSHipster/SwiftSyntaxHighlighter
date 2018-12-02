@@ -11,7 +11,10 @@ $(EXECUTABLE): $(BUILD_PATH)/release/$(EXECUTABLE)
 	@cp $(BUILD_PATH)/release/$(EXECUTABLE) $(EXECUTABLE)
 
 $(BUILD_PATH)/release/$(EXECUTABLE): $(SOURCES)
-	swift build -c release --build-path $(BUILD_PATH)
+	swift build \
+		-c release \
+		--disable-sandbox \
+		--build-path $(BUILD_PATH)
 
 .PHONY: install
 install: $(EXECUTABLE)
