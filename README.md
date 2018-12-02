@@ -34,18 +34,13 @@ Run the following command to install using [homebrew](https://brew.sh/):
 $ brew install nshipster/formulae/swift-syntax-highlight
 ```
 
-#### Precompiled Releases
-
-1. Download the `swift-syntax-highlight.tar.gz` asset file
-   from [the latest release](https://github.com/nshipster/SwiftSyntaxHighlighter/releases/latest)
-2. Unpack the downloaded archive
-3. Copy the `swift-syntax-highlight` executable to a location in your `$PATH`
-
 #### Manually
 
-Run the following command to build and install manually:
+Run the following commands to build and install manually:
 
 ```terminal
+$ git clone https://github.com/NSHipster/SwiftSyntaxHighlighter.git
+$ cd SwiftSyntaxHighlighter
 $ make install
 ```
 
