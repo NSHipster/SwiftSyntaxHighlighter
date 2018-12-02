@@ -146,7 +146,6 @@ class SwiftSyntaxHighlighter: SyntaxRewriter {
         case .eof:
             return nil
         default:
-            print("unknown: \(token.tokenKind) \(token.text)")
             break
         }
 
