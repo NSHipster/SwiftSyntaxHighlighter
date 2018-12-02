@@ -4,8 +4,11 @@ PREFIX ?= /usr/local/bin
 SOURCES = $(wildcard Sources/**/*.swift)
 BUILD_PATH ?= ./.build
 
+.PHONY: build
+build: $(EXECUTABLE)
+
 $(EXECUTABLE): $(BUILD_PATH)/release/$(EXECUTABLE)
-	@mv $(BUILD_PATH)/release/$(EXECUTABLE) $(EXECUTABLE)
+	@cp $(BUILD_PATH)/release/$(EXECUTABLE) $(EXECUTABLE)
 
 $(BUILD_PATH)/release/$(EXECUTABLE): $(SOURCES)
 	swift build -c release --build-path $(BUILD_PATH)
@@ -15,14 +18,16 @@ install: $(EXECUTABLE)
 	install $(EXECUTABLE) "$(PREFIX)"
 
 .PHONY: archive
-archive: $(EXECUTABLE)
-	tar --create --preserve-permissions --gzip --file $(ARCHIVE) $(EXECUTABLE)
+archive: $(ARCHIVE)
 	@shasum -a 256 $(EXECUTABLE)
 	@shasum -a 256 $(ARCHIVE)
 
+$(ARCHIVE): $(EXECUTABLE)
+	tar --create --preserve-permissions --gzip --file $(ARCHIVE) $(EXECUTABLE)
+
 .PHONY: clean
 clean:
-	rm -rf $(EXECUTABLE) $(ARCHIVE)
+	rm -rf $(BUILD_PATH) $(EXECUTABLE) $(ARCHIVE)
 
 .PHONY: uninstall
 uninstall:
