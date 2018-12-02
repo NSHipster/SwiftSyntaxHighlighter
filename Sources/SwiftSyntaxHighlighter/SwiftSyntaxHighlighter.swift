@@ -127,7 +127,10 @@ class SwiftSyntaxHighlighter: SyntaxRewriter {
             output = PseudoKeywordToken(string)
         case .equal, .arrow, .comma, .period, .colon, .semicolon,
              .stringQuote, .backslash,
-             .postfixQuestionMark, .wildcardKeyword,
+             .wildcardKeyword,
+             .prefixPeriod,
+             .infixQuestionMark,
+             .postfixQuestionMark,
              .leftAngle, .rightAngle,
              .leftBrace, .rightBrace,
              .leftParen, .rightParen,
