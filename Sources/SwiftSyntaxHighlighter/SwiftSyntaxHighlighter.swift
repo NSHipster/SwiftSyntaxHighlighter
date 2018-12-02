@@ -11,7 +11,7 @@ class SwiftSyntaxHighlighter: SyntaxRewriter {
     public var html: String {
         return "<pre class=\"highlight\"><code>\(highlightTokens.compactMap { $0?.html }.joined())</code></pre>"
     }
-    
+
     override func visit(_ token: TokenSyntax) -> Syntax {
         defer { previousToken = token }
 
@@ -226,7 +226,7 @@ public func highlight(_ code: String) throws -> String {
     let tempfile = try TemporaryFile(deleteOnClose: true)
     defer { tempfile.fileHandle.closeFile() }
     tempfile.fileHandle.write(code.data(using: .utf8)!)
-    
+
     let url = URL(fileURLWithPath: tempfile.path.asString)
     return try highlight(url)
 }

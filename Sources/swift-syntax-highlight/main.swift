@@ -15,7 +15,7 @@ let stderr = FileHandle.standardError
 do {
     let arguments = Array(ProcessInfo.processInfo.arguments.dropFirst())
     let parsedArguments = try parser.parse(arguments)
-    
+
     var output: String
     let input = parsedArguments.get(inputArgument)!
     if FileManager.default.fileExists(atPath: input) {
@@ -24,7 +24,7 @@ do {
     } else {
         output = try highlight(input)
     }
-    
+
     stdout.write(output.data(using: .utf8)!)
 } catch let error as ArgumentParserError {
     stderr.write(error.description.data(using: .utf8)!)
