@@ -22,8 +22,8 @@ swift-syntax-highlight libSwiftSyntax.dylib: $(SOURCES)
 
 .PHONY: install
 install: swift-syntax-highlight libSwiftSyntax.dylib
-	install "$(BUILDDIR)/release/swift-syntax-highlight" "$(bindir)"
-	install "$(BUILDDIR)/release/libSwiftSyntax.dylib" "$(libdir)"
+	install -d "$(BUILDDIR)/release/swift-syntax-highlight" "$(bindir)"
+	install -d "$(BUILDDIR)/release/libSwiftSyntax.dylib" "$(libdir)"
 	install_name_tool -change \
 		"$(BUILDDIR)/x86_64-apple-macosx10.10/release/libSwiftSyntax.dylib" \
 		"$(libdir)/libSwiftSyntax.dylib" \
