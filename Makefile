@@ -32,8 +32,8 @@ install: swift-syntax-highlight
 
 .PHONY: uninstall
 uninstall:
-	rm "$(bindir)/swift-syntax-highlight"
-	rm "$(libdir)/libSwiftSyntax.dylib"
+	rm -rf "$(bindir)/swift-syntax-highlight"
+	rm -rf "$(libdir)/libSwiftSyntax.dylib"
 
 .PHONY: clean
 distclean:
