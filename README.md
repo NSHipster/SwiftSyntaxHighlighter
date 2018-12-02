@@ -77,67 +77,6 @@ $ ./Highlight "print(\"Hello, world!\")"
 <pre class="highlight"><code><span class="n">print</span><span class="p">(</span><span class="s2">"Hello, world!"</span><span class="p">)</span></code></pre>
 ```
 
-## Example Output
-
-SwiftSyntaxHighlighter (0.0.1):
-
-<pre class="highlight"><code><span class="kd">import</span> <span class="nn">Foundation</span>
-
-<span class="cm">/*
- This is a multi-line comment block
- */</span>
-<span class="cp">#if</span> <span class="n">os</span><span class="p">(</span><span class="n">macOS</span><span class="p">)</span>
-<span class="kd">class</span> <span class="nc">Class</span><span class="p">:</span> <span class="nc">NSObject</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">let</span> <span class="n">message</span> <span class="p">=</span> <span class="s2">"""
-        Hello, world!
-    """</span>
-    <span class="na">@</span><span class="na">objc</span> <span class="kd">var</span> <span class="n">storedProperty</span><span class="p">:</span> <span class="nc">Int</span> <span class="p">=</span> <span class="mi">0</span>
-    
-    <span class="kd">override</span> <span class="kd">init</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-        <span class="bp">self</span><span class="p">.</span><span class="nc">storedProperty</span> <span class="p">=</span> <span class="mb">0b10101010</span>
-        <span class="bp">super</span><span class="p">.</span><span class="nc">init</span><span class="p">(</span><span class="p">)</span>
-    <span class="p">}</span>
-    
-    <span class="kd">func</span> <span class="nf">printSelectorAndKeyPath</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">print</span><span class="p">(</span><span class="cp">#selector</span><span class="p">(</span><span class="n">emptyFunction</span><span class="p">)</span><span class="p">)</span>
-        <span class="n">print</span><span class="p">(</span><span class="cp">#keyPath</span><span class="p">(</span><span class="n">storedProperty</span><span class="p">)</span><span class="p">)</span>
-    <span class="p">}</span>
-    
-    <span class="na">@</span><span class="na">objc</span> <span class="kd">func</span> <span class="nf">emptyFunction</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
-<span class="p">}</span>
-<span class="cp">#endif</span>
-</code></pre>
-
-Standard highlighter output:
-
-```swift
-import Foundation
-
-/*
- This is a multi-line comment block
- */
-#if os(macOS)
-class Class: NSObject {
-    private static let message = """
-        Hello, world!
-    """
-    @objc var storedProperty: Int = 0
-
-    override init() {
-        self.storedProperty = 0b10101010
-        super.init()
-    }
-
-    func printSelectorAndKeyPath() {
-        print(#selector(emptyFunction))
-        print(#keyPath(storedProperty))
-    }
-
-    @objc func emptyFunction() { }
-}
-#endif
-```
-
 ## License
 
 MIT
