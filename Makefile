@@ -14,14 +14,14 @@ SOURCES = $(wildcard $(srcdir)/**/*.swift)
 .PHONY: all
 all: swift-syntax-highlight
 
-swift-syntax-highlight libSwiftSyntax.dylib: $(SOURCES)
+swift-syntax-highlight: $(SOURCES)
 	swift build \
 		-c release \
 		--disable-sandbox \
 		--build-path "$(BUILDDIR)"
 
 .PHONY: install
-install: swift-syntax-highlight libSwiftSyntax.dylib
+install: swift-syntax-highlight
 	install -d "$(BUILDDIR)/release/swift-syntax-highlight" "$(bindir)"
 	install -d "$(BUILDDIR)/release/libSwiftSyntax.dylib" "$(libdir)"
 	install_name_tool -change \
