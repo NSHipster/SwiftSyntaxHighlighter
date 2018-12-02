@@ -1,37 +1,43 @@
-EXECUTABLE = swift-syntax-highlight
-ARCHIVE = $(EXECUTABLE).tar.gz
-PREFIX ?= /usr/local/bin
-SOURCES = $(wildcard Sources/**/*.swift)
-BUILD_PATH ?= ./.build
+SHELL = /bin/bash
 
-.PHONY: build
-build: $(EXECUTABLE)
+prefix ?= /usr/local
+bindir ?= $(prefix)/bin
+libdir ?= $(prefix)/lib
+srcdir = Sources
 
-$(EXECUTABLE): $(BUILD_PATH)/release/$(EXECUTABLE)
-	@cp $(BUILD_PATH)/release/$(EXECUTABLE) $(EXECUTABLE)
+REPODIR = $(shell pwd)
+BUILDDIR = $(REPODIR)/.build
+SOURCES = $(wildcard $(srcdir)/**/*.swift)
 
-$(BUILD_PATH)/release/$(EXECUTABLE): $(SOURCES)
+.DEFAULT_GOAL = all
+
+.PHONY: all
+all: swift-syntax-highlight
+
+swift-syntax-highlight libSwiftSyntax.dylib: $(SOURCES)
 	swift build \
 		-c release \
 		--disable-sandbox \
-		--build-path $(BUILD_PATH)
+		--build-path "$(BUILDDIR)"
 
 .PHONY: install
-install: $(EXECUTABLE)
-	install $(EXECUTABLE) "$(PREFIX)"
-
-.PHONY: archive
-archive: $(ARCHIVE)
-	@shasum -a 256 $(EXECUTABLE)
-	@shasum -a 256 $(ARCHIVE)
-
-$(ARCHIVE): $(EXECUTABLE)
-	tar --create --preserve-permissions --gzip --file $(ARCHIVE) $(EXECUTABLE)
-
-.PHONY: clean
-clean:
-	rm -rf $(BUILD_PATH) $(EXECUTABLE) $(ARCHIVE)
+install: swift-syntax-highlight libSwiftSyntax.dylib
+	install "$(BUILDDIR)/release/swift-syntax-highlight" "$(bindir)"
+	install "$(BUILDDIR)/release/libSwiftSyntax.dylib" "$(libdir)"
+	install_name_tool -change \
+		"$(BUILDDIR)/x86_64-apple-macosx10.10/release/libSwiftSyntax.dylib" \
+		"$(libdir)/libSwiftSyntax.dylib" \
+		"$(bindir)/swift-syntax-highlight"
 
 .PHONY: uninstall
 uninstall:
-	rm "$(PREFIX)/$(EXECUTABLE)"
+	rm "$(bindir)/swift-syntax-highlight"
+	rm "$(libdir)/libSwiftSyntax.dylib"
+
+.PHONY: clean
+distclean:
+	rm -f $(BUILDDIR)/release
+
+.PHONY: clean
+clean: distclean
+	rm -rf $(BUILDDIR)
