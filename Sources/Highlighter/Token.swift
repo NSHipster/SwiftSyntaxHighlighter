@@ -18,7 +18,7 @@ extension Token {
         if let className = className {
             return #"<span class="\#(className)">\#(escapedText)</span>"#
         } else {
-            return #"<span>\#(escapedText)</span>"#
+            return escapedText
         }
     }
 }
