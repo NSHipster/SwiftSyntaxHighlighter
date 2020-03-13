@@ -9,6 +9,9 @@ let package = Package(
         .library(
             name: "SwiftSyntaxHighlighter",
             targets: ["SwiftSyntaxHighlighter"]),
+        .library(
+            name: "Pygments",
+            targets: ["Pygments"]),
         .executable(name: "swift-highlight",
                     targets: ["swift-highlight"])
     ],
