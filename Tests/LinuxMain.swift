@@ -1,7 +1,1 @@
-import XCTest
-
-import SwiftSyntaxHighlighterTests
-
-var tests = [XCTestCaseEntry]()
-tests += SwiftSyntaxHighlighterTests.allTests()
-XCTMain(tests)
+fatalError("Run with `swift test --enable-test-discovery`")
