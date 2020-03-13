@@ -1,3 +1,5 @@
+import HTMLEntities
+
 /// A Pygments token
 public class Token {
     class var shortName: String? {
@@ -15,6 +17,13 @@ public class Token {
             return self.text
         }
 
-        return "<span class=\"\(shortName)\">\(text)</span>"
+        return #"<span class="\#(shortName)">\#(text.htmlEscape())</span>"#
     }
 }
+
+/**
+
+ Really should be Token<Kind: TokenKind>
+
+ enum Name: TokenKind { static var shortName: String { "n" } }
+ */

@@ -6,25 +6,16 @@
         "repositoryURL": "https://github.com/IBM-Swift/swift-html-entities.git",
         "state": {
           "branch": null,
-          "revision": "9112c12bc5cc2b20fcaf1393c65a9cbbfda5a155",
-          "version": "3.0.10"
-        }
-      },
-      {
-        "package": "SwiftPM",
-        "repositoryURL": "https://github.com/apple/swift-package-manager.git",
-        "state": {
-          "branch": null,
-          "revision": "235aacc514cb81a6881364b0fedcb3dd083228f3",
-          "version": "0.3.0"
+          "revision": "744c094976355aa96ca61b9b60ef0a38e979feb7",
+          "version": "3.0.14"
         }
       },
       {
         "package": "SwiftSyntax",
         "repositoryURL": "https://github.com/apple/swift-syntax.git",
         "state": {
-          "branch": "0.40200.0",
-          "revision": "f20c0bcbfb4b07e107c9851350217cb2217f0cb4",
+          "branch": "swift-5.2-DEVELOPMENT-SNAPSHOT-2020-03-09-a",
+          "revision": "75914650fd1f4a8e65c3bf27f2f7599762aae1f5",
           "version": null
         }
       }
