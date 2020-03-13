@@ -12,18 +12,20 @@ let package = Package(
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
+        .target(name: "Highlighter",
+                dependencies: ["SwiftSyntax", "HTMLEntities"]),
+        .target(name: "Pygments",
+                dependencies: ["Highlighter"],
+                path: "Sources/TokenizationSchemes/Pygments"),
         .target(
-            name: "swift-syntax-highlight",
+            name: "swift-highlight",
             dependencies: ["SwiftSyntaxHighlighter"]),
         .target(
             name: "SwiftSyntaxHighlighter",
-            dependencies: ["SwiftSyntax", "HTMLEntities", "Pygments"]),
-        .target(
-            name: "Pygments",
-            dependencies: []),
+            dependencies: ["SwiftSyntax", "Highlighter"]),
         .testTarget(
             name: "SwiftSyntaxHighlighterTests",
-            dependencies: ["SwiftSyntaxHighlighter"]),
+            dependencies: ["SwiftSyntaxHighlighter", "Pygments"]),
     ]
 )
 
