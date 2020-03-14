@@ -8,10 +8,7 @@ let package = Package(
     products: [
         .library(
             name: "SwiftSyntaxHighlighter",
-            targets: ["SwiftSyntaxHighlighter"]),
-        .library(
-            name: "Pygments",
-            targets: ["Pygments"]),
+            targets: ["SwiftSyntaxHighlighter", "Pygments"]),
         .executable(name: "swift-highlight",
                     targets: ["swift-highlight"])
     ],
