@@ -13,11 +13,14 @@ final class SwiftSyntaxHighlighterTests: XCTestCase {
 
         let actual = try highlight(source, using: Pygments.self)
 
-        let empty = #"""
-        <pre class="highlight"><code></code></pre>
+        let expected = #"""
+        <pre class="highlight"><code><span class="c1">/// Returns a personalized greeting.</span><span class="w">
+        </span><span class="kd">func</span><span class="w"> </span><span class="n">greet</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">&quot;</span><span class="s2">Hello, </span><span class="p">\</span><span class="p">(</span><span class="n">name</span><span class="si">)</span><span class="s2">!</span><span class="p">&quot;</span><span class="w"> </span><span class="c1">// &#x1F44B;</span><span class="w">
+        </span><span class="p">}</span></code></pre>
         """#
 
 
-        XCTAssertNotEqual(actual, empty)
+        XCTAssertEqual(actual, expected)
     }
 }
