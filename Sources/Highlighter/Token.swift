@@ -13,7 +13,7 @@ public struct Token {
 
 extension Token {
     public var html: String {
-        let escapedText = text.htmlEscape()
+        let escapedText = text.htmlEscape(useNamedReferences: true)
 
         if let className = className {
             return #"<span class="\#(className)">\#(escapedText)</span>"#
