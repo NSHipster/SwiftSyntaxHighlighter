@@ -2,7 +2,7 @@ import XCTest
 import SwiftSyntaxHighlighter
 import Pygments
 
-final class SwiftSyntaxHighlighterTests: XCTestCase {
+final class PygmentsTests: XCTestCase {
     func testExample() throws {
         let source = #"""
         /// Returns a personalized greeting.

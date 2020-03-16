@@ -8,7 +8,7 @@ let package = Package(
     products: [
         .library(
             name: "SwiftSyntaxHighlighter",
-            targets: ["SwiftSyntaxHighlighter", "Pygments"]),
+            targets: ["SwiftSyntaxHighlighter", "Xcode", "Pygments"]),
         .executable(name: "swift-highlight",
                     targets: ["swift-highlight"])
     ],
@@ -24,6 +24,9 @@ let package = Package(
         .target(name: "Pygments",
                 dependencies: ["Highlighter"],
                 path: "Sources/TokenizationSchemes/Pygments"),
+        .target(name: "Xcode",
+                dependencies: ["Highlighter"],
+                path: "Sources/TokenizationSchemes/Xcode"),
         .target(
             name: "swift-highlight",
             dependencies: ["SwiftSyntaxHighlighter"]),
@@ -32,7 +35,7 @@ let package = Package(
             dependencies: ["SwiftSyntax", "Highlighter"]),
         .testTarget(
             name: "SwiftSyntaxHighlighterTests",
-            dependencies: ["SwiftSyntaxHighlighter", "Pygments"]),
+            dependencies: ["SwiftSyntaxHighlighter", "Xcode", "Pygments"]),
     ]
 )
 
