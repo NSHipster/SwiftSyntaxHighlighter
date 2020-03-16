@@ -38,7 +38,8 @@ public enum Xcode: TokenizationScheme {
         case .integerLiteral,
              .floatingLiteral:
             token = Token(tokenSyntax.text, kind: NumberLiteral.self)
-        case .stringLiteral:
+        case .stringLiteral,
+             .stringInterpolationAnchor:
             token = Token(tokenSyntax.text, kind: StringLiteral.self)
         case .poundDirectiveKeyword,
              .buildConfigId:
