@@ -8,13 +8,13 @@ let package = Package(
     products: [
         .library(
             name: "SwiftSyntaxHighlighter",
-            targets: ["SwiftSyntaxHighlighter", "Xcode", "Pygments"]),
+            targets: ["SwiftSyntaxHighlighter"]),
         .executable(name: "swift-highlight",
                     targets: ["swift-highlight"])
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-syntax.git", .revision("swift-5.2-DEVELOPMENT-SNAPSHOT-2020-03-09-a")),
-        .package(url: "https://github.com/IBM-Swift/swift-html-entities.git", .upToNextMajor(from: "3.0.0"))
+        .package(url: "https://github.com/apple/swift-syntax.git", .revision("0.50200.0")),
+        .package(url: "https://github.com/IBM-Swift/swift-html-entities.git", .upToNextMajor(from: "3.0.0")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -32,10 +32,10 @@ let package = Package(
             dependencies: ["SwiftSyntaxHighlighter"]),
         .target(
             name: "SwiftSyntaxHighlighter",
-            dependencies: ["SwiftSyntax", "Highlighter"]),
+            dependencies: ["SwiftSyntax", "Highlighter", "Xcode", "Pygments"]),
         .testTarget(
             name: "SwiftSyntaxHighlighterTests",
-            dependencies: ["SwiftSyntaxHighlighter", "Xcode", "Pygments"]),
+            dependencies: ["SwiftSyntaxHighlighter"]),
     ]
 )
 

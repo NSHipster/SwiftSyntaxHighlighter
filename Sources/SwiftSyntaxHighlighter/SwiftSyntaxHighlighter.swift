@@ -2,18 +2,26 @@ import SwiftSyntax
 import Highlighter
 import struct Foundation.URL
 
-class SwiftSyntaxHighlighter<Scheme: TokenizationScheme>: SyntaxAnyVisitor {
-    var tokens: [Token] = []
+@_exported import Xcode
+@_exported import Pygments
 
-    public init(scheme: Scheme.Type) {}
+open class SwiftSyntaxHighlighter: SyntaxAnyVisitor {
+    let scheme: TokenizationScheme.Type
+    public private(set) var tokens: [Token] = []
+
+    public init(using scheme: TokenizationScheme.Type) {
+        self.scheme = scheme
+    }
 
     public var html: String {
         let tags = tokens.map { $0.html }.joined()
         return #"<pre class="highlight"><code>\#(tags)</code></pre>"#
     }
 
-    override func visitAny(_ node: Syntax) -> SyntaxVisitorContinueKind {
-        tokens.append(contentsOf: Scheme.tokens(for: node))
+    // MARK: - SyntaxAnyVisitor
+
+    public override func visitAny(_ node: Syntax) -> SyntaxVisitorContinueKind {
+        tokens.append(contentsOf: scheme.tokens(for: node))
 
         return .visitChildren
     }
@@ -21,16 +29,20 @@ class SwiftSyntaxHighlighter<Scheme: TokenizationScheme>: SyntaxAnyVisitor {
 
 // MARK: -
 
-public func highlight<Scheme: TokenizationScheme>(_ source: String, using scheme: Scheme.Type) throws -> String {
-    let highlighter = SwiftSyntaxHighlighter(scheme: Scheme.self)
-    let tree = try SyntaxParser.parse(source: source)
-    _ = highlighter.visit(tree)
-    return highlighter.html
-}
+extension SwiftSyntaxHighlighter {
+    public class func highlight(source: String, using scheme: TokenizationScheme.Type) throws -> String {
+        let tree = try SyntaxParser.parse(source: source)
+        return try highlight(syntax: tree, using: scheme)
+    }
 
-public func highlight<Scheme: TokenizationScheme>(_ url: URL, using scheme: Scheme.Type) throws -> String {
-    let highlighter = SwiftSyntaxHighlighter(scheme: Scheme.self)
-    let tree = try SyntaxParser.parse(url)
-    _ = highlighter.visit(tree)
-    return highlighter.html
+    public class func highlight(file url: URL, using scheme: TokenizationScheme.Type) throws -> String {
+        let tree = try SyntaxParser.parse(url)
+        return try highlight(syntax: tree, using: scheme)
+    }
+
+    public class func highlight(syntax: SourceFileSyntax, using scheme: TokenizationScheme.Type) throws -> String {
+        let highlighter = SwiftSyntaxHighlighter(using: scheme)
+        _ = highlighter.visit(syntax)
+        return highlighter.html
+    }
 }

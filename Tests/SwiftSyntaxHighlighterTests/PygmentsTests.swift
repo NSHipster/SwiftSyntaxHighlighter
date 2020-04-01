@@ -11,7 +11,7 @@ final class PygmentsTests: XCTestCase {
         }
         """#
 
-        let actual = try highlight(source, using: Pygments.self)
+        let actual = try SwiftSyntaxHighlighter.highlight(source: source, using: Pygments.self)
 
         let expected = #"""
         <pre class="highlight"><code><span class="c1">/// Returns a personalized greeting.</span><span class="w">
