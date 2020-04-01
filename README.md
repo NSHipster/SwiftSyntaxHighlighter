@@ -2,8 +2,8 @@
 
 A syntax highlighter for Swift code that uses
 [SwiftSyntax](https://github.com/apple/swift-syntax).
-You can use it either from the command-line, 
-via the `swift-highlight` executable, 
+You can use it either from the command-line,
+via the `swift-highlight` executable,
 or in Swift code using the `SwiftSyntaxHighlighter` module.
 
 This functionality is discussed in the NSHipster article
@@ -98,7 +98,7 @@ let package = Package(
   dependencies: [
     .package(
         url: "https://github.com/NSHipster/SwiftSyntaxHighlighter",
-        from: "0.2.0"
+        from: "1.0.0"
     ),
   ]
 )
@@ -112,7 +112,7 @@ To use `SwiftSyntaxHighlighter` in your Xcode project using Carthage,
 specify it in `Cartfile`:
 
 ```
-github "NSHipster/SwiftSyntaxHighlighter" ~> 0.2.0
+github "NSHipster/SwiftSyntaxHighlighter" ~> 1.0.0
 ```
 
 Then run the `carthage update` command to build the framework,
