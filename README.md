@@ -1,5 +1,8 @@
 # SwiftSyntaxHighlighter
 
+![CI][ci badge]
+[![Documentation][documentation badge]][documentation]
+
 A syntax highlighter for Swift code that uses
 [SwiftSyntax](https://github.com/apple/swift-syntax).
 You can use it either from the command-line,
@@ -125,3 +128,7 @@ MIT
 ## Contact
 
 Mattt ([@mattt](https://twitter.com/mattt))
+
+[ci badge]: https://github.com/NSHipster/SwiftSyntaxHighlighter/workflows/CI/badge.svg
+[documentation badge]: https://github.com/NSHipster/SwiftSyntaxHighlighter/workflows/Documentation/badge.svg
+[documentation]: https://github.com/NSHipster/SwiftSyntaxHighlighter/wiki
