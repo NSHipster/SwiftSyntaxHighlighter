@@ -11,7 +11,7 @@ This functionality is discussed in the NSHipster article
 
 ## Requirements
 
-- Xcode 11.4+ and Swift 5.2+
+- Swift 5.2+
 
 ## Command-Line Usage
 
