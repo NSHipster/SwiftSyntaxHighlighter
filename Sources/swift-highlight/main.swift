@@ -62,10 +62,10 @@ struct SwiftHighlight: ParsableCommand {
     }
 }
 
-let input = standardInput.readDataToEndOfFile()
-if !input.isEmpty, let source = String(data: input, encoding: .utf8) {
+if ProcessInfo.processInfo.arguments.count == 1 {
+    let input = standardInput.readDataToEndOfFile()
+    let source = String(data: input, encoding: .utf8)!
     SwiftHighlight.main([source, "--scheme", SwiftHighlight.Scheme.default.rawValue])
 } else {
     SwiftHighlight.main()
 }
-
