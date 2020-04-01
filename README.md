@@ -98,7 +98,7 @@ let package = Package(
   dependencies: [
     .package(
         url: "https://github.com/NSHipster/SwiftSyntaxHighlighter",
-        from: "0.1.0"
+        from: "0.2.0"
     ),
   ]
 )
@@ -112,7 +112,7 @@ To use `SwiftSyntaxHighlighter` in your Xcode project using Carthage,
 specify it in `Cartfile`:
 
 ```
-github "NSHipster/SwiftSyntaxHighlighter" ~> 0.1.0
+github "NSHipster/SwiftSyntaxHighlighter" ~> 0.2.0
 ```
 
 Then run the `carthage update` command to build the framework,
