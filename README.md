@@ -1,27 +1,42 @@
 # SwiftSyntaxHighlighter
 
 A syntax highlighter for Swift code that uses
-[SwiftSyntax](https://github.com/apple/swift-syntax) to generate
-[Pygments](http://pygments.org)-compatible HTML.
-You can use it either
-from the command-line, via the `swift-syntax-highlight` executable or
-in Swift code using the SwiftSyntaxHighlighter module.
+[SwiftSyntax](https://github.com/apple/swift-syntax).
+You can use it either from the command-line, 
+via the `swift-highlight` executable, 
+or in Swift code using the `SwiftSyntaxHighlighter` module.
 
 This functionality is discussed in the NSHipster article
 [SwiftSyntax](https://nshipster.com/swiftsyntax/).
 
 ## Requirements
 
-- Xcode 10.0+ and Swift 4.2+
+- Xcode 11.4+ and Swift 5.2+
 
 ## Command-Line Usage
 
-The `swift-syntax-highlight` executable can be run from the command line
+The `swift-highlight` executable can be run from the command line
 to highlight either a path to a source file or source code:
 
 ```terminal
-$ swift-syntax-highlight "print(\"Hello, world!\")"
-<pre class="highlight"><code><span class="n">print</span><span class="p">(</span><span class="s2">"Hello, world!"</span><span class="p">)</span></code></pre>
+$ swift highlight 'print("Hello, world!")"
+<pre class="highlight"><code><span class="keyword">let</span> <span class="variable">greeting</span> = <span class="string literal">&quot;</span><span class="string literal">Hello, world!</span><span class="string literal">&quot;</span></code></pre>
+```
+
+Pass the `--scheme pygments` option
+to generate [Pygments](http://pygments.org)-compatible HTML:
+
+```terminal
+$ swift highlight 'print("Hello, world!")" --scheme pygments
+<pre class="highlight"><code><span class="n">print</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">Hello, world!</span><span class="p">&quot;</span><span class="p">)</span></code></pre>
+```
+
+`swift-highlight` also accepts arguments piped from standard input (`stdin`):
+
+```terminal
+echo 'print("Hello, world!")' | swift highlight
+<pre class="highlight"><code><span class="variable">print</span>(<span class="string literal">&quot;</span><span class="string literal">Hello, world!</span><span class="string literal">&quot;</span>)
+</code></pre>
 ```
 
 ### Installation
@@ -46,9 +61,11 @@ $ make install
 
 ## Code Usage
 
-`SwiftSyntaxHighlighter` provides two top-level functions named `highlight(_:)`,
-with overloads for providing a file URL
-or passing source code directly as a `String`:
+`SwiftSyntaxHighlighter` provides type methods named `highlight`
+that take either
+source code as a `String`,
+a source file `URL`, 
+or a `SourceFileSyntax` AST created by SwiftSyntax.
 
 ```swift
 import SwiftSyntaxHighlighter
@@ -57,14 +74,15 @@ let code = """
 print("Hello, world!")
 """
 
-let html = highlight(code)
+let html = try SwiftSyntaxHighlighter.highlight(source: source, using: Xcode.self)
 ```
 
-After running this code, `html` contains the following string:
+After running this code, 
+`html` contains the following string:
 
-<samp>
-&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Hello, world!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-</samp>
+```
+<pre class="highlight"><code><span class="keyword">let</span> <span class="variable">greeting</span> = <span class="string literal">&quot;</span><span class="string literal">Hello, world!</span><span class="string literal">&quot;</span></code></pre>
+```
 
 ### Installation
 
@@ -80,7 +98,7 @@ let package = Package(
   dependencies: [
     .package(
         url: "https://github.com/NSHipster/SwiftSyntaxHighlighter",
-        from: "0.0.1"
+        from: "0.1.0"
     ),
   ]
 )
@@ -94,7 +112,7 @@ To use `SwiftSyntaxHighlighter` in your Xcode project using Carthage,
 specify it in `Cartfile`:
 
 ```
-github "NSHipster/SwiftSyntaxHighlighter" ~> 0.0.1
+github "NSHipster/SwiftSyntaxHighlighter" ~> 0.1.0
 ```
 
 Then run the `carthage update` command to build the framework,
