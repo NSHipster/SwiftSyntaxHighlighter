@@ -1,13 +1,15 @@
 import XCTest
 import class Foundation.Bundle
 
-private let source = #"""
+fileprivate let source = #"""
 let greeting = "Hello, world!"
 """#
-private let expectedOutput = #"""
+
+fileprivate let expectedOutput = #"""
 <pre class="highlight"><code><span class="keyword">let</span> <span class="variable">greeting</span> = <span class="string literal">&quot;</span><span class="string literal">Hello, world!</span><span class="string literal">&quot;</span></code></pre>
 """#
-private let expectedPygmentsOutput = #"""
+
+fileprivate let expectedPygmentsOutput = #"""
 <pre class="highlight"><code><span class="kd">let</span><span class="w"> </span><span class="n">greeting</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">&quot;</span><span class="s2">Hello, world!</span><span class="p">&quot;</span></code></pre>
 """#
 
