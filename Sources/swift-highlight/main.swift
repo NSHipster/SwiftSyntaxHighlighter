@@ -31,7 +31,7 @@ struct SwiftHighlight: ParsableCommand {
 
     struct Options: ParsableArguments {
         @Argument(help: "Swift code or a path to a Swift file")
-        var input: String
+        var input: String?
 
         @Option(name: .shortAndLong,
                 default: .default,
@@ -45,15 +45,20 @@ struct SwiftHighlight: ParsableCommand {
     var options: Options
 
     func run() throws {
-        let input = options.input
         let scheme = options.scheme.type
         var output: String
 
-        if fileManager.fileExists(atPath: input) {
-            let url = URL(fileURLWithPath: input)
-            output = try SwiftSyntaxHighlighter.highlight(file: url, using: scheme)
+        if let input = options.input {
+            if fileManager.fileExists(atPath: input) {
+                let url = URL(fileURLWithPath: input)
+                output = try SwiftSyntaxHighlighter.highlight(file: url, using: scheme)
+            } else {
+                output = try SwiftSyntaxHighlighter.highlight(source: input, using: scheme)
+            }
         } else {
-            output = try SwiftSyntaxHighlighter.highlight(source: input, using: scheme)
+            let inputData = standardInput.readDataToEndOfFile()
+            let source = String(data: inputData, encoding: .utf8)!
+            output = try SwiftSyntaxHighlighter.highlight(source: source, using: scheme)
         }
 
         if let data = output.data(using: .utf8) {
@@ -62,10 +67,4 @@ struct SwiftHighlight: ParsableCommand {
     }
 }
 
-if ProcessInfo.processInfo.arguments.count == 1 {
-    let input = standardInput.readDataToEndOfFile()
-    let source = String(data: input, encoding: .utf8)!
-    SwiftHighlight.main([source, "--scheme", SwiftHighlight.Scheme.default.rawValue])
-} else {
-    SwiftHighlight.main()
-}
+SwiftHighlight.main()

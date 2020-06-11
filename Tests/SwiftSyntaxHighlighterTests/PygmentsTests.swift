@@ -20,7 +20,6 @@ final class PygmentsTests: XCTestCase {
         </span><span class="p">}</span></code></pre>
         """#
 
-
         XCTAssertEqual(actual, expected)
     }
 }
