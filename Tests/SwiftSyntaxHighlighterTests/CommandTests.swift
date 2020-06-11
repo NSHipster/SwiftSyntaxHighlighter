@@ -14,36 +14,6 @@ fileprivate let expectedPygmentsOutput = #"""
 """#
 
 final class CommandTests: XCTestCase {
-    @available(macOS 10.13, *)
-    private func runCommand(arguments: String..., standardInput: String = "") throws -> String? {
-        let process = Process()
-        process.executableURL = executable
-        process.arguments = arguments
-
-        let inputPipe = Pipe()
-        inputPipe.fileHandleForWriting.writeabilityHandler = { fileHandle in
-            fileHandle.write(standardInput.data(using: .utf8)!)
-            inputPipe.fileHandleForWriting.closeFile()
-        }
-        process.standardInput = inputPipe
-
-        var data = Data()
-        let outputPipe = Pipe()
-        defer { outputPipe.fileHandleForReading.closeFile() }
-        outputPipe.fileHandleForReading.readabilityHandler = { fileHandle in
-            data.append(fileHandle.availableData)
-        }
-        process.standardOutput = outputPipe
-
-        process.standardError = FileHandle.nullDevice
-
-        try process.run()
-        process.waitUntilExit()
-        guard process.terminationStatus == EXIT_SUCCESS else { return nil }
-
-        return String(data: data, encoding: .utf8)
-    }
-
     func testHighlightArguments() throws {
         guard #available(macOS 10.13, *) else { return }
 
@@ -87,12 +57,42 @@ final class CommandTests: XCTestCase {
         }
     }
 
-    var executable: URL {
+    @available(macOS 10.13, *)
+    private func runCommand(arguments: String..., standardInput: String = "") throws -> String? {
+        let process = Process()
+        process.executableURL = executable
+        process.arguments = arguments
+
+        let inputPipe = Pipe()
+        inputPipe.fileHandleForWriting.writeabilityHandler = { fileHandle in
+            fileHandle.write(standardInput.data(using: .utf8)!)
+            inputPipe.fileHandleForWriting.closeFile()
+        }
+        process.standardInput = inputPipe
+
+        var data = Data()
+        let outputPipe = Pipe()
+        defer { outputPipe.fileHandleForReading.closeFile() }
+        outputPipe.fileHandleForReading.readabilityHandler = { fileHandle in
+            data.append(fileHandle.availableData)
+        }
+        process.standardOutput = outputPipe
+
+        process.standardError = FileHandle.nullDevice
+
+        try process.run()
+        process.waitUntilExit()
+        guard process.terminationStatus == EXIT_SUCCESS else { return nil }
+
+        return String(data: data, encoding: .utf8)
+    }
+
+    private var executable: URL {
         return productsDirectory.appendingPathComponent("swift-highlight")
     }
 
     /// Returns path to the built products directory.
-    var productsDirectory: URL {
+    private var productsDirectory: URL {
       #if os(macOS)
         for bundle in Bundle.allBundles where bundle.bundlePath.hasSuffix(".xctest") {
             return bundle.bundleURL.deletingLastPathComponent()
