@@ -20,7 +20,6 @@ final class XcodeTests: XCTestCase {
         }</code></pre>
         """#
 
-
         XCTAssertEqual(actual, expected)
     }
 }
