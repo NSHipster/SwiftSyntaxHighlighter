@@ -14,20 +14,22 @@ public enum Xcode: TokenizationScheme {
             token = Token(tokenSyntax.text, kind: Keyword.self)
         case .identifier:
             switch tokenSyntax.previousToken?.tokenKind {
+                case .funcKeyword:
+                    token = Token(tokenSyntax.text, kind: FunctionName.self)
+                case .atSign:
+                    token = Token(tokenSyntax.text, kind: Attribute.self)
                 case .classKeyword,
                      .enumKeyword,
                      .structKeyword,
                      .protocolKeyword,
                      .isKeyword,
                      .asKeyword,
-                     .period,
-                     .colon,
-                     .leftSquareBracket where tokenSyntax.text == tokenSyntax.text.capitalized:
+                     .colon:
                     token = Token(tokenSyntax.text, kind: TypeName.self)
-                case .funcKeyword:
-                    token = Token(tokenSyntax.text, kind: FunctionName.self)
-                case .atSign:
-                    token = Token(tokenSyntax.text, kind: Attribute.self)
+                case .period,
+                     .leftSquareBracket:
+                    guard tokenSyntax.text.first?.isUppercase == true else { fallthrough }
+                    token = Token(tokenSyntax.text, kind: TypeName.self)
                 default:
                     token = Token(tokenSyntax.text, kind: Variable.self)
                 }
