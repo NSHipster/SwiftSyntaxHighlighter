@@ -22,7 +22,7 @@ The `swift-highlight` executable can be run from the command line
 to highlight either a path to a source file or source code:
 
 ```terminal
-$ swift highlight 'print("Hello, world!")"
+$ swift highlight 'print("Hello, world!")'
 <pre class="highlight"><code><span class="keyword">let</span> <span class="variable">greeting</span> = <span class="string literal">&quot;</span><span class="string literal">Hello, world!</span><span class="string literal">&quot;</span></code></pre>
 ```
 
@@ -30,7 +30,7 @@ Pass the `--scheme pygments` option
 to generate [Pygments](http://pygments.org)-compatible HTML:
 
 ```terminal
-$ swift highlight 'print("Hello, world!")" --scheme pygments
+$ swift highlight 'print("Hello, world!")' --scheme pygments
 <pre class="highlight"><code><span class="n">print</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">Hello, world!</span><span class="p">&quot;</span><span class="p">)</span></code></pre>
 ```
 
