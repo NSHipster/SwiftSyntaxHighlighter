@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.2
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -13,7 +13,7 @@ let package = Package(
                     targets: ["swift-highlight"])
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-syntax.git", .revision("0.50300.0")),
+        .package(url: "https://github.com/apple/swift-syntax.git", .revision("0.50200.0")),
         .package(url: "https://github.com/IBM-Swift/swift-html-entities.git", .upToNextMajor(from: "3.0.0")),
         .package(url: "https://github.com/apple/swift-argument-parser.git", .upToNextMinor(from: "0.0.4")),
     ],
@@ -39,4 +39,3 @@ let package = Package(
             dependencies: ["SwiftSyntaxHighlighter"]),
     ]
 )
-
