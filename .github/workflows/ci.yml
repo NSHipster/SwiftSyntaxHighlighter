@@ -33,5 +33,9 @@ jobs:
             key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
             restore-keys: |
               ${{ runner.os }}-spm-
+        - name: Install System Dependencies
+          run: |
+            apt-get update
+            apt-get install -y libxml2-dev
         - name: Build and Test
           run: swift test -c release --enable-test-discovery
