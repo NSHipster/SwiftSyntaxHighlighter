@@ -119,10 +119,6 @@ public enum Pygments: TokenizationScheme {
              .poundErrorKeyword,
              .poundAvailableKeyword:
             token = Token(tokenSyntax.text, kind: Comment.Preprocessor.self)
-        #if swift(>=5.3)
-        case .poundFileIDKeyword:
-            token = Token(tokenSyntax.text, kind: Comment.Preprocessor.self)
-        #endif
         case .contextualKeyword(let string):
             token = Token(string, kind: Keyword.Pseudo.self)
         case .equal, .arrow, .comma, .period, .colon, .semicolon, .ellipsis,

@@ -10,27 +10,19 @@ jobs:
   macos:
     runs-on: macOS-latest
 
-    strategy:
-      matrix:
-        xcode: ["12", "11.7"]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Build and Test
         run: swift test
         env:
-          DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+          DEVELOPER_DIR: /Applications/Xcode_12.app/Contents/Developer
 
   linux:
       runs-on: ubuntu-latest
 
-      strategy:
-        matrix:
-          swift: ["5.3", "5.2"]
-
       container:
-        image: swift:${{ matrix.swift }}
+        image: swift:5.3
 
       steps:
         - name: Checkout
@@ -38,8 +30,8 @@ jobs:
         - uses: actions/cache@v2
           with:
             path: .build
-            key: ${{ runner.os }}-spm-swift-${{ matrix.swift }}-${{ hashFiles('**/Package.resolved') }}
+            key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
             restore-keys: |
-              ${{ runner.os }}-spm-swift-${{ matrix.swift }}-
+              ${{ runner.os }}-spm-
         - name: Build and Test
           run: swift test -c release --enable-test-discovery

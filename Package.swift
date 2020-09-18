@@ -42,4 +42,3 @@ let package = Package(
             dependencies: ["SwiftSyntaxHighlighter"]),
     ]
 )
-
