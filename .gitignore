@@ -4,3 +4,6 @@
 /*.xcodeproj
 .swiftpm
 swift-syntax-highlight*
+
+# Ignored due to the need to support different Swift versions with different versions of dependencies
+Package.resolved
