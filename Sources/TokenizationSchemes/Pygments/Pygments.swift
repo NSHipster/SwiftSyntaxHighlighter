@@ -103,6 +103,7 @@ public enum Pygments: TokenizationScheme {
              .poundIfKeyword,
              .poundSourceLocationKeyword,
              .poundFileKeyword,
+             .poundFileIDKeyword,
              .poundLineKeyword,
              .poundColumnKeyword,
              .poundDsohandleKeyword,
