@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "swift-build",
+            "type": "shell",
+            "command": "swift build"
+        },
+        {
+            "label": "swift-build-tests",
+            "type": "process",
+            "command": "swift",
+            "group": "build",
+            "args": [
+                "build",
+                "--build-tests"
+            ]
+        }
+    ]
+}
