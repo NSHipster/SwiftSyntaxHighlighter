@@ -10,6 +10,7 @@ ARG USER_GID=$USER_UID
 
 # Other options for common setup script
 ARG INSTALL_ZSH="true"
+
 ARG UPGRADE_PACKAGES="false"
 ARG COMMON_SCRIPT_SOURCE="https://raw.githubusercontent.com/microsoft/vscode-dev-containers/master/script-library/common-debian.sh"
 ARG COMMON_SCRIPT_SHA="dev-mode"
