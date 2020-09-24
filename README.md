@@ -14,7 +14,7 @@ This functionality is discussed in the NSHipster article
 
 ## Requirements
 
-- Swift 5.2+
+- Swift 5.3+
 
 ## Command-Line Usage
 
@@ -67,7 +67,7 @@ $ make install
 `SwiftSyntaxHighlighter` provides type methods named `highlight`
 that take either
 source code as a `String`,
-a source file `URL`, 
+a source file `URL`,
 or a `SourceFileSyntax` AST created by SwiftSyntax.
 
 ```swift
@@ -80,7 +80,7 @@ print("Hello, world!")
 let html = try SwiftSyntaxHighlighter.highlight(source: source, using: Xcode.self)
 ```
 
-After running this code, 
+After running this code,
 `html` contains the following string:
 
 ```
@@ -101,7 +101,7 @@ let package = Package(
   dependencies: [
     .package(
         url: "https://github.com/NSHipster/SwiftSyntaxHighlighter",
-        from: "1.0.0"
+        from: "1.1.0"
     ),
   ]
 )
@@ -115,7 +115,7 @@ To use `SwiftSyntaxHighlighter` in your Xcode project using Carthage,
 specify it in `Cartfile`:
 
 ```
-github "NSHipster/SwiftSyntaxHighlighter" ~> 1.0.0
+github "NSHipster/SwiftSyntaxHighlighter" ~> 1.1.0
 ```
 
 Then run the `carthage update` command to build the framework,
