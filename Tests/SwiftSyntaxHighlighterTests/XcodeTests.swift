@@ -16,7 +16,7 @@ final class XcodeTests: XCTestCase {
         let expected = #"""
         <pre class="highlight"><code><span class="documentation">/// Returns a personalized greeting.</span>
         <span class="keyword">func</span> <span class="function">greet</span>(<span class="variable">name</span>: <span class="type">String</span>) -&gt; <span class="type">String</span> {
-            <span class="keyword">return</span> <span class="string literal">&quot;</span><span class="string literal">Hello, </span>\<span class="string literal">(</span><span class="variable">name</span><span class="string literal">)</span><span class="string literal">!</span><span class="string literal">&quot;</span> <span class="comment">// &#x1F44B;</span>
+            <span class="keyword">return</span> <span class="string literal">&quot;</span><span class="string literal">Hello, </span>\<span class="string literal">(</span><span class="variable">name</span><span class="string literal">)</span><span class="string literal">!</span><span class="string literal">&quot;</span> <span class="comment">// 👋</span>
         }</code></pre>
         """#
 
