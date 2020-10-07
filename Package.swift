@@ -13,15 +13,16 @@ let package = Package(
                     targets: ["swift-highlight"])
     ],
     dependencies: [
-        .package(name: "SwiftSyntax", url: "https://github.com/apple/swift-syntax.git", .revision("0.50300.0")),
-        .package(name: "HTMLEntities", url: "https://github.com/IBM-Swift/swift-html-entities.git", from: "3.0.0"),
-        .package(url: "https://github.com/apple/swift-argument-parser.git", .upToNextMinor(from: "0.0.4")),
+        .package(name: "SwiftSyntax",
+                 url: "https://github.com/apple/swift-syntax.git",
+                 .revision("0.50300.0")),
+        .package(name: "swift-argument-parser",
+                 url: "https://github.com/apple/swift-argument-parser.git",
+                 .upToNextMinor(from: "0.0.4")),
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(name: "Highlighter",
-                dependencies: ["SwiftSyntax", "HTMLEntities"]),
+                dependencies: ["SwiftSyntax"]),
         .target(name: "Pygments",
                 dependencies: ["Highlighter"],
                 path: "Sources/TokenizationSchemes/Pygments"),
