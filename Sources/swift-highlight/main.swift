@@ -34,9 +34,8 @@ struct SwiftHighlight: ParsableCommand {
         var input: String?
 
         @Option(name: .shortAndLong,
-                default: .default,
                 help: "The tokenization scheme.")
-        var scheme: Scheme
+        var scheme: Scheme = .default
     }
 
     static var configuration = CommandConfiguration(abstract: "A utility for syntax highlighting Swift code.")
