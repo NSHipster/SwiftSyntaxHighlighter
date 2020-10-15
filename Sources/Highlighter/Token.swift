@@ -1,7 +1,7 @@
 import SwiftSyntax
 import Foundation
 
-public struct Token {
+public struct Token: Equatable, Hashable, Codable {
     public var text: String
     public var className: String?
 
@@ -9,9 +9,7 @@ public struct Token {
         self.text = text
         self.className = kind.className
     }
-}
 
-extension Token {
     public var html: String {
         if let className = className {
             return #"<span class="\#(className)">\#(text.escaped)</span>"#
