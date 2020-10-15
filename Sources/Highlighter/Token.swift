@@ -1,7 +1,7 @@
 import SwiftSyntax
 import HTMLEntities
 
-public struct Token {
+public struct Token: Equatable, Hashable, Codable {
     public var text: String
     public var className: String?
 
@@ -9,9 +9,7 @@ public struct Token {
         self.text = text
         self.className = kind.className
     }
-}
 
-extension Token {
     public var html: String {
         let escapedText = text.htmlEscape(useNamedReferences: true)
 
