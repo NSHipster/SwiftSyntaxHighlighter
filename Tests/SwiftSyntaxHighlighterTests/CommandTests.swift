@@ -1,22 +1,21 @@
 import XCTest
 import class Foundation.Bundle
 
-fileprivate let source = #"""
-let greeting = "Hello, world!"
-"""#
-
-fileprivate let expectedOutput = #"""
-<pre class="highlight"><code><span class="keyword">let</span> <span class="variable">greeting</span> = <span class="string literal">&quot;</span><span class="string literal">Hello, world!</span><span class="string literal">&quot;</span></code></pre>
-"""#
-
-fileprivate let expectedPygmentsOutput = #"""
-<pre class="highlight"><code><span class="kd">let</span><span class="w"> </span><span class="n">greeting</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">&quot;</span><span class="s2">Hello, world!</span><span class="p">&quot;</span></code></pre>
-"""#
-
+#if os(macOS)
 final class CommandTests: XCTestCase {
-    func testHighlightArguments() throws {
-        guard #available(macOS 10.13, *) else { return }
+    let source = #"""
+    let greeting = "Hello, world!"
+    """#
 
+    let expectedOutput = #"""
+    <pre class="highlight"><code><span class="keyword">let</span> <span class="variable">greeting</span> = <span class="string literal">&quot;</span><span class="string literal">Hello, world!</span><span class="string literal">&quot;</span></code></pre>
+    """#
+
+    let expectedPygmentsOutput = #"""
+    <pre class="highlight"><code><span class="kd">let</span><span class="w"> </span><span class="n">greeting</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">&quot;</span><span class="s2">Hello, world!</span><span class="p">&quot;</span></code></pre>
+    """#
+
+    func testHighlightArguments() throws {
         do {
             let output = try runCommand(arguments: source, "--scheme", "xcode")
             XCTAssertEqual(output, expectedOutput)
@@ -39,8 +38,6 @@ final class CommandTests: XCTestCase {
     }
 
     func testHighlightStandardInput() throws {
-        guard #available(macOS 10.13, *) else { return }
-
         do {
             let output = try runCommand(standardInput: source)
             XCTAssertEqual(output, expectedOutput)
@@ -57,7 +54,6 @@ final class CommandTests: XCTestCase {
         }
     }
 
-    @available(macOS 10.13, *)
     private func runCommand(arguments: String..., standardInput: String = "") throws -> String? {
         let process = Process()
         process.executableURL = executable
@@ -91,7 +87,6 @@ final class CommandTests: XCTestCase {
         return productsDirectory.appendingPathComponent("swift-highlight")
     }
 
-    /// Returns path to the built products directory.
     private var productsDirectory: URL {
       #if os(macOS)
         for bundle in Bundle.allBundles where bundle.bundlePath.hasSuffix(".xctest") {
@@ -103,3 +98,4 @@ final class CommandTests: XCTestCase {
       #endif
     }
 }
+#endif
