@@ -86,3 +86,7 @@ jobs:
       - name: Build and Test
         run: |
           swift test --enable-test-discovery
+      - name: Install and Run
+        run: |
+          make install
+          swift-highlight 'print("Hello, world!")'
