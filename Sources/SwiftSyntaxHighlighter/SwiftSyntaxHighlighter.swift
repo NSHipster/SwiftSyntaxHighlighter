@@ -13,11 +13,6 @@ open class SwiftSyntaxHighlighter: SyntaxAnyVisitor {
         self.scheme = scheme
     }
 
-    public var html: String {
-        let tags = tokens.map { $0.html }.joined()
-        return #"<pre class="highlight"><code>\#(tags)</code></pre>"#
-    }
-
     // MARK: - SyntaxAnyVisitor
 
     public override func visitAny(_ node: Syntax) -> SyntaxVisitorContinueKind {
@@ -43,6 +38,7 @@ extension SwiftSyntaxHighlighter {
     public class func highlight(syntax: SourceFileSyntax, using scheme: TokenizationScheme.Type) throws -> String {
         let highlighter = SwiftSyntaxHighlighter(using: scheme)
         _ = highlighter.visit(syntax)
-        return highlighter.html
+        let tags = highlighter.tokens.map { $0.html }.joined()
+        return #"<pre class="highlight"><code>\#(tags)</code></pre>"#
     }
 }
