@@ -2,10 +2,16 @@ import Highlighter
 import SwiftSyntax
 
 public enum Xcode: TokenizationScheme {
+    /// Returns the highlighted tokens for a SwiftSyntax node.
+    /// - Parameter syntax: The syntax node to be highlighted.
+    /// - Returns: An array of highlighted tokens.
     public static func tokens(for syntax: Syntax) -> [Token] {
         return syntax.tokens.flatMap { tokens(for: $0) }
     }
 
+    /// Returns the highlighted tokens for a `TokenSyntax` node.
+    /// - Parameter tokenSyntax: The syntax node to be highlighted.
+    /// - Returns: An array of highlighted tokens.
     static func tokens(for tokenSyntax: TokenSyntax) -> [Token] {
         var token: Token?
 

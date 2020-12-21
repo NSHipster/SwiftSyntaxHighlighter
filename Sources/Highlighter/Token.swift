@@ -1,18 +1,29 @@
 import SwiftSyntax
 import Foundation
 
+
+/// A highlighter token.
 public struct Token: Equatable, Hashable, Codable {
+
+    /// The token text.
     public var text: String
+
+    /// The name of the token kind.
     public var className: String?
 
+    /// Create a new highlighter token with the specified text and kind.
+    /// - Parameters:
+    ///   - text: The token text.
+    ///   - kind: The kind of token.
     public init<Kind: TokenKind>(_ text: String, kind: Kind.Type) {
         self.text = text
         self.className = kind.className
     }
 
+    /// An HTML representation of the highlighter token.
     public var html: String {
         if let className = className {
-            return #"<span class="\#(className)">\#(text.escaped)</span>"#
+            return #"<span class="\#(className.escaped)">\#(text.escaped)</span>"#
         } else {
             return text.escaped
         }
