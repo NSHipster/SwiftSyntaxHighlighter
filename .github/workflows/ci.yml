@@ -2,13 +2,13 @@ name: CI
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
 
 jobs:
   macos:
-    runs-on: macOS-latest
+    runs-on: macos-10.15
 
     steps:
       - name: Checkout
