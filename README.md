@@ -109,18 +109,6 @@ let package = Package(
 
 Then run the `swift build` command to build your project.
 
-#### Carthage
-
-To use `SwiftSyntaxHighlighter` in your Xcode project using Carthage,
-specify it in `Cartfile`:
-
-```
-github "NSHipster/SwiftSyntaxHighlighter" ~> 1.2.0
-```
-
-Then run the `carthage update` command to build the framework,
-and drag the built SwiftSyntaxHighlighter.framework into your Xcode project.
-
 ## License
 
 MIT
