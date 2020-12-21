@@ -1,6 +1,7 @@
 import XCTest
 import class Foundation.Bundle
 
+#if os(macOS)
 final class CommandTests: XCTestCase {
     let source = #"""
     let greeting = "Hello, world!"
@@ -97,3 +98,4 @@ final class CommandTests: XCTestCase {
       #endif
     }
 }
+#endif
