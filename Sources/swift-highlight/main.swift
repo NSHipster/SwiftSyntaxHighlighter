@@ -13,6 +13,11 @@ var standardOutput = FileHandle.standardOutput
 var standardError = FileHandle.standardError
 
 struct SwiftHighlight: ParsableCommand {
+    static var configuration = CommandConfiguration(
+        abstract: "A utility for syntax highlighting Swift code.",
+        version: "1.2.0"
+    )
+
     enum Scheme: String, ExpressibleByArgument {
         case xcode
         case pygments
@@ -38,7 +43,6 @@ struct SwiftHighlight: ParsableCommand {
         var scheme: Scheme = .default
     }
 
-    static var configuration = CommandConfiguration(abstract: "A utility for syntax highlighting Swift code.")
 
     @OptionGroup()
     var options: Options
