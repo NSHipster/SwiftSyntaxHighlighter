@@ -15,7 +15,7 @@ var standardError = FileHandle.standardError
 struct SwiftHighlight: ParsableCommand {
     static var configuration = CommandConfiguration(
         abstract: "A utility for syntax highlighting Swift code.",
-        version: "1.2.0"
+        version: "1.2.1"
     )
 
     enum Scheme: String, ExpressibleByArgument {

@@ -101,7 +101,7 @@ let package = Package(
   dependencies: [
     .package(
         url: "https://github.com/NSHipster/SwiftSyntaxHighlighter",
-        from: "1.2.0"
+        from: "1.2.1"
     ),
   ]
 )
