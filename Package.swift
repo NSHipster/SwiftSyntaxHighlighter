@@ -21,7 +21,7 @@ let package = Package(
                  .revision("0.50300.0")),
         .package(name: "swift-argument-parser",
                  url: "https://github.com/apple/swift-argument-parser.git",
-                 .upToNextMinor(from: "0.3.1"))
+                 .upToNextMinor(from: "0.3.2"))
     ],
     targets: [
         .target(name: "Highlighter",
