@@ -18,7 +18,7 @@ let package = Package(
     dependencies: [
         .package(name: "SwiftSyntax",
                  url: "https://github.com/apple/swift-syntax.git",
-                 .revision("release/5.5")),
+                 .revision("4ae758ab85ed2a5d3e3e8b5050a8ce52179bd102")),
         .package(name: "swift-argument-parser",
                  url: "https://github.com/apple/swift-argument-parser.git",
                  .upToNextMinor(from: "0.3.2"))
